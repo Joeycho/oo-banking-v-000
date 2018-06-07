@@ -21,9 +21,12 @@ class Transfer
     if self.sender.valid?
     self.sender.balance -= amount
     self.receiver.balance += amount
-  else
+    else
     "Transaction rejeceted. Please check your account balance."
+    end
   end
+
+  def reverse_transfer
   end
 
 end
