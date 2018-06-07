@@ -1,3 +1,4 @@
+require 'pry'
 class Transfer
   # your code here
   attr_accessor :sender, :receiver, :status, :amount
@@ -19,6 +20,7 @@ class Transfer
 
   def execute_transaction
     if self.sender.valid? && self.status == "pending"
+      binding.pry
     self.sender.balance -= amount
     self.receiver.balance += amount
     self.status = "complete"
@@ -28,6 +30,11 @@ class Transfer
   end
 
   def reverse_transfer
+    if self.status == "complete"
+    self.sender.balance += amount
+    self.receiver.balance -= amount
+    self.status = "pending"
+    end
   end
 
 end
